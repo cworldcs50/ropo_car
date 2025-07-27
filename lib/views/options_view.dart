@@ -19,7 +19,6 @@ class OptionsView extends StatelessWidget {
     return BlocProvider(
       create: (context) => VoiceCommandCubit(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(),
         body: Center(
           child: Padding(
@@ -30,7 +29,6 @@ class OptionsView extends StatelessWidget {
                   icon: Icons.text_fields,
                   onTap: () {
                     showModalBottomSheet(
-                      constraints: BoxConstraints(maxHeight: 300),
                       context: context,
                       builder:
                           (ctx) => CustomForm(

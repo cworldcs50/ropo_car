@@ -1,13 +1,12 @@
 import 'dart:developer';
-
-import 'package:bluetooth_car/helpers/show_snack_bar.dart';
+import 'options_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial_ble/flutter_bluetooth_serial_ble.dart';
 import '../widgets/custom_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bluetooth_car/helpers/show_snack_bar.dart';
 import '../cubits/connect_to_bluetooth_cubit/connect_to_bluetooth_cubit.dart';
 import '../cubits/connect_to_bluetooth_cubit/connect_to_bluetooth_states.dart';
-import 'options_view.dart';
+import 'package:flutter_bluetooth_serial_ble/flutter_bluetooth_serial_ble.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -34,8 +33,12 @@ class _HomeViewState extends State<HomeView> {
               onTap: () async {
                 final ConnectToBluetoothCubit cubit =
                     context.read<ConnectToBluetoothCubit>();
+
                 final List<BluetoothDiscoveryResult> devices =
                     cubit.scannedDevices;
+
+                await cubit.scanForDevices();
+
                 await showModalBottomSheet(
                   context: context,
                   builder: (context) {

@@ -16,11 +16,6 @@ class VoiceCommandCubit extends Cubit<VoiceCommandState> {
       listenMode: stt.ListenMode.confirmation,
     );
 
-
-
-
-
-//
     if (available) {
       await _speech.listen(
         onResult: (result) async {
